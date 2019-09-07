@@ -2,9 +2,6 @@ package com.pojos;
 
 import java.util.Date;
 
-
-
-
 public abstract class CorporateAction {
 
 	
@@ -91,82 +88,3 @@ public abstract class CorporateAction {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-public class CorporateAction {
-
-	
-	private String tickerSymbol;
-	private float faceValue;
-	private Object action;
-	private Date actionDate;
-	
-	private int equityNo;
-	private float fund;
-	
-	
-	public String getTickerSymbol() {
-		return tickerSymbol;
-	}
-	public void setTickerSymbol(String tickerSymbol) {
-		this.tickerSymbol = tickerSymbol;
-	}
-	public float getFaceValue() {
-		return faceValue;
-	}
-	public void setFaceValue(float faceValue) {
-		this.faceValue = faceValue;
-	}
-	public Object getAction() {
-		return action;
-	}
-	public void setAction(Object action) {
-		this.action = action;
-	}
-	public Date getActionDate() {
-		return actionDate;
-	}
-	public void setActionDate(Date actionDate) {
-		this.actionDate = actionDate;
-	}
-	public int getEquityNo() {
-		return equityNo;
-	}
-	public void setEquityNo(int equityNo) {
-		this.equityNo = equityNo;
-	}
-	public float getFund() {
-		return fund;
-	}
-	public void setFund(float fund) {
-		this.fund = fund;
-	}
-	
-	
-	
-	
-}
-
-*/

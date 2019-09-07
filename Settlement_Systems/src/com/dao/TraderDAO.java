@@ -1,8 +1,10 @@
 package com.dao;
 
-public interface TraderDAO {
+public class TraderDAO {
 
-// float addTraderBalance();	
-	
+//	float addTraderBalance() {
+//	return 0;
+//}
+//
 	
 }

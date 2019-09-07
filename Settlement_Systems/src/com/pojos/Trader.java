@@ -45,6 +45,14 @@ public class Trader {
 	public void setEquityBal(List<Equity> equityBal) {
 		this.equityBal = equityBal;
 	}
+	public double getNumOfEquityByName() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public void setNumOfEquityByName(double d) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

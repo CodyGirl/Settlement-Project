@@ -1,6 +1,5 @@
 package com.pojos.corporateActionChild;
 
-
 import com.pojos.CorporateAction;
 
 public class Bonus extends CorporateAction {
@@ -18,7 +17,3 @@ public class Bonus extends CorporateAction {
 	}
 
 }
-
-
-
-

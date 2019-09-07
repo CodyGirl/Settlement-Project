@@ -1,4 +1,5 @@
 package com.pojos.corporateActionChild;
+
 import com.pojos.CorporateAction;
 
 public class Dividend extends CorporateAction {
