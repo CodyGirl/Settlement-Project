@@ -5,6 +5,7 @@ import java.util.List;
 public class Trader {
 
 	private String traderId;
+	private String traderName;
 	private String traderPassword;
 	private float traderFundBal;
 	private List<Equity> equityBal;
@@ -12,15 +13,30 @@ public class Trader {
 	
 	
 	public Trader() {
-		super();
+		traderId="invalid";
+		traderName="invalid";
+		traderPassword="inavlid";
+		traderFundBal=(float) 0.00;
+		
 	}
-	public Trader(String traderId, String traderPassword, float traderFundBal, List<Equity> equityBal) {
-		super();
+	
+	public Trader(String traderId, String traderName, String traderPassword, float traderFundBal,
+			List<Equity> equityBal) {
 		this.traderId = traderId;
+		this.traderName = traderName;
 		this.traderPassword = traderPassword;
 		this.traderFundBal = traderFundBal;
 		this.equityBal = equityBal;
 	}
+
+	public String getTraderName() {
+		return traderName;
+	}
+
+	public void setTraderName(String traderName) {
+		this.traderName = traderName;
+	}
+
 	public String getTraderId() {
 		return traderId;
 	}
@@ -52,6 +68,12 @@ public class Trader {
 	public void setNumOfEquityByName(double d) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String toString() {
+		return "Trader [traderId=" + traderId + ", traderName=" + traderName + ", traderPassword=" + traderPassword
+				+ ", traderFundBal=" + traderFundBal + ", equityBal=" + equityBal + "]";
 	}
 	
 	
