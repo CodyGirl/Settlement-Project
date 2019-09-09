@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pojo.Student;
 import com.pojos.Equity;
 import com.pojos.Trader;
 
@@ -46,7 +45,7 @@ public class ObjectsCreation {
 	public static List<Trader> findTrader() {
 		// TODO Auto-generated method stub
 		List<Trader> traders= new ArrayList<Trader>();
-		String FIND_ALL_TRADERS= "select tradercashdetails.traderid,tradercashdetails.tradername,tradercashdetails.fundsavailable,traderlogin.traderpassword,    from tradercashdetails INNER JOIN traderlogin on traderid";
+		String FIND_ALL_TRADERS= "select tradercashdetails.traderid,tradercashdetails.tradername,tradercashdetails.fundsavailable,traderlogin.traderpassword,    from tradercashdetails INNER JOIN traderlogin on traderid;";
 		try {
 			PreparedStatement ps= ConnectionClass.openConnection().prepareStatement(FIND_ALL_TRADERS);
 			ResultSet set= ps.executeQuery();

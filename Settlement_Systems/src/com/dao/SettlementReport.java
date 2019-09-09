@@ -6,6 +6,8 @@ import com.pojos.Equity;
 import com.pojos.Trader;
 
 public class SettlementReport {
+	
+	
 
 	public static void generateSettlement(Trader trader)
 	{

@@ -8,7 +8,7 @@ public class Trader {
 	private String traderName;
 	private String traderPassword;
 	private float traderFundBal;
-	private List<Equity> equityBal;
+	public List<TraderEquity> equityBal;
 	
 	
 	
@@ -20,11 +20,17 @@ public class Trader {
 		
 	}
 	
-	public Trader(String traderId, String traderName, String traderPassword, float traderFundBal,
+	public Trader(String traderId, String traderName, float traderFundBal,
 			List<Equity> equityBal) {
 		this.traderId = traderId;
 		this.traderName = traderName;
-		this.traderPassword = traderPassword;
+		this.traderFundBal = traderFundBal;
+		//this.equityBal = equityBal;
+	}
+	
+	public Trader(String traderId, float traderFundBal,
+			List<TraderEquity> equityBal) {
+		this.traderId = traderId;
 		this.traderFundBal = traderFundBal;
 		this.equityBal = equityBal;
 	}
@@ -55,12 +61,12 @@ public class Trader {
 	public void setTraderFundBal(float traderFundBal) {
 		this.traderFundBal = traderFundBal;
 	}
-	public List<Equity> getEquityBal() {
-		return equityBal;
-	}
-	public void setEquityBal(List<Equity> equityBal) {
-		this.equityBal = equityBal;
-	}
+//	public List<Equity> getEquityBal() {
+//		return equityBal;
+//	}
+//	public void setEquityBal(List<Equity> equityBal) {
+//		this.equityBal = equityBal;
+//	}
 	public double getNumOfEquityByName() {
 		// TODO Auto-generated method stub
 		return 0;
