@@ -248,6 +248,79 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	
 	
+	
+	@Override
+	public boolean setDataInFundReportTable(Trader trader, Equity equity, int gross) {
+		// TODO Auto-generated method stub
+
+		try {
+
+			System.out.println("Inserting records into fundreport table:");
+			String sql = " UPDATE FUNDREPORT SET " + equity.getTickerSymbol() + "=?  WHERE TRADERID =? ";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			System.out.println("gross : " + gross + ", trader id : " + trader.getTraderId());
+			ps.setInt(1, gross);
+			ps.setString(2, trader.getTraderId());
+			System.out.println(sql);
+			int xi = ps.executeUpdate();
+			ps.clearBatch();
+			ps.close();
+			System.out.println(xi);
+			// st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+//		return false;
+		}
+        return true;
+		// add exception
+
+	}
+
+	
+	@Override
+	public float getDataFromFundReportTable(Trader trader, Equity equity) {
+		// TODO Auto-generated method stub
+        float fundAmount=0;
+		try {
+
+			System.out.println("taking records from fundreporttable:");
+			String sql = " select " +  equity.getTickerSymbol() + " from fundreport WHERE TRADERID =? ";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, trader.getTraderId());
+			System.out.println(sql);
+			ResultSet set= ps.executeQuery();
+			while(set.next())
+			{
+				fundAmount = set.getInt(equity.getTickerSymbol());
+			}
+			System.out.println("amount is: "+ fundAmount);
+			ps.clearBatch();
+			ps.close();
+			// st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fundAmount;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public boolean modifyTrade(Trade trade, int quantity) {
 
