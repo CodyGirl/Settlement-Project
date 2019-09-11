@@ -45,8 +45,8 @@ public class SettlementReport {
 				} else {
 					int shareShortage = Math.abs(correspShare) - equityBal;
 					float equityRate = Dao.getBorrowEquityRate(equity);
-					//float equityPrice= Dao.getBorrowEquityPrice(equity);
-					float equityInterest = equityRate* (2/365);
+					float equityPrice= Dao.getBorrowEquityPrice(equity);
+					float equityInterest = equityPrice* equityRate* (2/365);
 					float shareCost = shareShortage *equityInterest;
 					System.out.println("fundbal : ********** and sharecost"+ fundBal+shareCost);
 						float remainingFunds= fundBal - shareCost;
