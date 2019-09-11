@@ -20,7 +20,7 @@ public interface AdminDAO {
 	
 	List<Trade> findCorrespTrade(Equity equityName,Trader trader);
 	
-	boolean setDataInReportTable(Trader trader,Equity equity,int gross);
+	boolean setDataInReportTable(Trader trader,Equity equity,int grossShare);
 	
 	int getNumOfEquity(String tickerSymbol,Trader trader);
 	
@@ -45,5 +45,17 @@ public interface AdminDAO {
 	int getDataFromReportTable(Trader trader, Equity equity);
 
 	boolean generateRandomTrades();
+
+	boolean setDataInFundReportTable(Trader trader, Equity equity, int grossAmount);
+
+	float getDataFromFundReportTable(Trader trader, Equity equity);
+
+	float getBorrowEquityPrice(Equity equity);
+
+	boolean setDataInFundInterestTable(Trader trader, double fundCost);
+
+	boolean setDataInEquityInterestTable(Trader trader, Equity equity, double fundCost);
+
+	boolean setDataInEquityShortageTable(Trader trader, Equity equity, int shareShortage);
 	
 }

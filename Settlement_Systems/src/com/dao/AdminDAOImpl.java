@@ -364,8 +364,34 @@ public class AdminDAOImpl implements AdminDAO {
 
 	}
 	
-	
-	
+	@Override
+	public boolean setDataInEquityShortageTable(Trader trader, Equity equity, int shareShortage) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				try {
+
+					System.out.println("Inserting records into fundreport table:");
+					String sql = " UPDATE EQUITYSHORTAGE SET " + equity.getTickerSymbol() + "=?  WHERE TRADERID =? ";
+					PreparedStatement ps = connection.prepareStatement(sql);
+					//System.out.println("gross : " + gross + ", trader id : " + trader.getTraderId());
+					ps.setDouble(1, shareShortage);;
+					ps.setString(2, trader.getTraderId());
+					System.out.println(sql);
+					int xi = ps.executeUpdate();
+					ps.clearBatch();
+					ps.close();
+					System.out.println(xi);
+					// st.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return false;
+//				return false;
+				}
+		        return true;
+				// add exception
+
+	}
 	
 	
 	
@@ -690,6 +716,8 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		return rate;
 	}
+
+	
      
 	
 
