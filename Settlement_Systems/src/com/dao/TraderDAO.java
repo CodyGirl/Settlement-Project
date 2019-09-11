@@ -1,10 +1,12 @@
 package com.dao;
 
-public class TraderDAO {
+import com.pojos.Trader;
 
-//	float addTraderBalance() {
-//	return 0;
-//}
-//
+public interface TraderDAO {
+
+// float addTraderBalance();	
+	
+	int getNumOfEquity(String tickerSymbol, String TraderId);
+	
 	
 }
