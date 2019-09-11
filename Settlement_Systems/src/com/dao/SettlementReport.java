@@ -46,12 +46,14 @@ public class SettlementReport {
 				equity.setQuantity(equityBal);
 				Dao.setTraderEquity(trader, equity);
 				Dao.setDataInEquityInterestTable(trader, equity, 0);
+				Dao.setDataInEquityShortageTable(trader, equity, 0);
 			} else {
 				if (equityBal >= Math.abs(correspShare)) {
 					equityBal += correspShare;
 					equity.setQuantity(equityBal);
 					Dao.setTraderEquity(trader, equity);
 					Dao.setDataInEquityInterestTable(trader, equity, 0);
+					Dao.setDataInEquityShortageTable(trader, equity, 0);
 				} else {
 					int shareShortage = equityBal - Math.abs(correspShare);
 					Dao.setDataInEquityShortageTable(trader, equity, shareShortage);
