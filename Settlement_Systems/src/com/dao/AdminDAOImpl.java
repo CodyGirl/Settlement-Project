@@ -307,10 +307,62 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	
 	
+	@Override
+	public boolean setDataInFundInterestTable(Trader trader, double fundCost) {
+		// TODO Auto-generated method stub
+		try {
+
+			System.out.println("Inserting records into fundreport table:");
+			String sql = " UPDATE FUNDINTEREST SET INTEREST =?  WHERE TRADERID =? ";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			//System.out.println("gross : " + gross + ", trader id : " + trader.getTraderId());
+			ps.setDouble(1, fundCost);;
+			ps.setString(2, trader.getTraderId());
+			System.out.println(sql);
+			int xi = ps.executeUpdate();
+			ps.clearBatch();
+			ps.close();
+			System.out.println(xi);
+			// st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+//		return false;
+		}
+        return true;
+		// add exception
+
+	}
 	
 	
-	
-	
+	@Override
+	public boolean setDataInEquityInterestTable(Trader trader,Equity equity, double fundCost) {
+		// TODO Auto-generated method stub
+		try {
+
+			System.out.println("Inserting records into fundreport table:");
+			String sql = " UPDATE EQUITYINTEREST SET " + equity.getTickerSymbol() + "=?  WHERE TRADERID =? ";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			//System.out.println("gross : " + gross + ", trader id : " + trader.getTraderId());
+			ps.setDouble(1, fundCost);;
+			ps.setString(2, trader.getTraderId());
+			System.out.println(sql);
+			int xi = ps.executeUpdate();
+			ps.clearBatch();
+			ps.close();
+			System.out.println(xi);
+			// st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+//		return false;
+		}
+        return true;
+		// add exception
+
+	}
 	
 	
 	
@@ -582,6 +634,37 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		return rate;
 	}
+	
+	
+	
+	@Override
+	public float getBorrowEquityPrice(Equity equity)
+	{
+		float price=(float) 0.0;
+		try {
+			System.out.println("getting borrow rate");
+			String sql = " select MARKETPRICE from EQUITYBORROWINGRATE where tickersymbol=? ";
+			PreparedStatement ps= connection.prepareStatement(sql);
+			ps.setString(1, equity.getTickerSymbol());
+			System.out.println(sql);
+			ResultSet set = ps.executeQuery();
+			while(set.next())
+			{
+			 price= set.getFloat("marketprice");
+			}
+			System.out.println("MARKET PRICE  is : "+ price);
+			ps.clearBatch();
+			ps.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return price;
+	}
+	
+	
+	
 	@Override
 	public float getBorrowFundRate(String currency)
 	{
@@ -607,5 +690,7 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		return rate;
 	}
+     
+	
 
 }

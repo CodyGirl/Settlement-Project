@@ -6,56 +6,87 @@ import com.pojos.Equity;
 import com.pojos.Trader;
 
 public class SettlementReport {
-
+	
 	public void generateSettlement(Trader trader) {
 		AdminDAOImpl Dao = new AdminDAOImpl();
 		String traderId = trader.getTraderId();
 		List<Equity> equities = ObjectsCreation.findEquityDetailsOfTrader(traderId);
-		for (Equity equity : equities) {
-			
-			int correspShare = Dao.getDataFromReportTable(trader, equity);
+		float grossFund=0;
+		float fundBal= trader.getTraderFundBal();
+		for (Equity equity : equities) { 
 			float correspFund = Dao.getDataFromFundReportTable(trader, equity);
-			float fundBal = trader.getTraderFundBal();
+			grossFund += correspFund;
+			
+		}
+		System.out.println("*****traderwise fundreport ***** "+ grossFund+"   "+trader.getTraderId());
+		float netFund= grossFund+ fundBal;
+		
+		if(netFund < 0)
+		{
+			float fundRate = Dao.getBorrowFundRate("usd");
+			double fundInterest = (fundRate * (2.0/365.0)) / 100;
+			double fundCost = netFund * fundInterest;
+			Dao.setDataInFundInterestTable(trader,fundCost);
+			netFund += fundCost;
+			trader.setTraderFundBal(netFund);
+			Dao.setTraderFund(trader);	
+		}else {
+			Dao.setDataInFundInterestTable(trader,0);
+			trader.setTraderFundBal(netFund);
+			Dao.setTraderFund(trader);	
+		}
+		fundBal= trader.getTraderFundBal();
+		
+		for(Equity equity : equities)
+		{
+
+			int correspShare = Dao.getDataFromReportTable(trader, equity);
 			int equityBal = equity.getQuantity();
-			if (correspShare > 0) {
-				correspShare += equityBal;
-				equity.setQuantity(correspShare);
+			if(correspShare >= 0)
+			{
+				equityBal += correspShare;
+				equity.setQuantity(equityBal);
 				Dao.setTraderEquity(trader, equity);
-				if(fundBal >= Math.abs(correspFund))
+				Dao.setDataInEquityInterestTable(trader, equity, 0);
+			}
+			else {
+				if(equityBal >= Math.abs(correspShare))
 				{
-					trader.setTraderFundBal(fundBal-Math.abs(correspFund));
+					equityBal += correspShare;
+					equity.setQuantity(equityBal);
+					Dao.setTraderEquity(trader, equity);
+					Dao.setDataInEquityInterestTable(trader, equity, 0);
+				}
+				else {
+					int shareShortage = equityBal-Math.abs(correspShare);
+					equityBal = 0;
+					equity.setQuantity(equityBal);
+					Dao.setTraderEquity(trader, equity);
+                     
+					float equityRate = Dao.getBorrowEquityRate(equity);
+					float equityPrice = Dao.getBorrowEquityPrice(equity);
+					double equityInterest = (equityPrice * equityRate * (2.0/365.0)) / 100;
+					double shareCost = shareShortage * equityInterest;
+					System.out.println("equity interest charge  ###### "+trader.getTraderId() + " "+ equity.getEquityName()+" "+   equityInterest +" INTERSEST $$$$$ "+  shareCost);
+					System.out.println("fundbal : ********** and sharecost" + fundBal +"sharecost     " + shareCost);
+					Dao.setDataInEquityInterestTable(trader, equity, shareCost);
+					float remainingFunds = (float) (fundBal + shareCost);
+					trader.setTraderFundBal(remainingFunds);
 					Dao.setTraderFund(trader);
 				}
-				else
-				{
-					float fundShortage = Math.abs(correspFund)-fundBal;
-					float fundRate = Dao.getBorrowFundRate("usd");
-					float fundInterest = fundRate * (2 / 365);
-					float fundCost = fundShortage * fundInterest;
-					trader.setTraderFundBal(0 - fundCost);
-					Dao.setTraderFund(trader);	
-				}	
-			} else {
-				 fundBal +=correspFund;
-				 trader.setTraderFundBal(fundBal);
-				Dao.setTraderFund(trader);	
-				if (equityBal >= Math.abs(correspShare)) {
-					equity.setQuantity(equityBal - Math.abs(correspShare));
-					Dao.setTraderEquity(trader, equity);
-				} else {
-					int shareShortage = Math.abs(correspShare) - equityBal;
-					float equityRate = Dao.getBorrowEquityRate(equity);
-					float equityPrice= Dao.getBorrowEquityPrice(equity);
-					float equityInterest = equityPrice* equityRate* (2/365);
-					float shareCost = shareShortage *equityInterest;
-					System.out.println("fundbal : ********** and sharecost"+ fundBal+shareCost);
-						float remainingFunds= fundBal - shareCost;
-						trader.setTraderFundBal(remainingFunds);
-						Dao.setTraderFund(trader);
-				}
+				
+				
 			}
-
+			
+			
+			
+			
 		}
-
+		
+		
+		
+		
+		
 	}
+
 }
