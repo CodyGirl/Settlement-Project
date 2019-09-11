@@ -25,7 +25,7 @@ public class AdminDAOImpl implements AdminDAO {
 		// TODO Auto-generated method stub
 
 		Iterator<Trade> iter = trades.iterator();
-
+		int row=0;
 		try {
 			String newsql = "INSERT INTO TRADELIST VALUES(?,?,?,?,?,?,?)";			
 			PreparedStatement ps = connection.prepareStatement(newsql);		
@@ -55,7 +55,7 @@ public class AdminDAOImpl implements AdminDAO {
 				ps.setString(6, sellerid);
 				ps.setString(7, "admin");
 
-				ps.executeUpdate();
+				row=ps.executeUpdate();
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -65,7 +65,10 @@ public class AdminDAOImpl implements AdminDAO {
 
 		// add exception
 
-		return true;
+		if(row>0)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
@@ -192,7 +195,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public boolean setDataInReportTable(Trader trader, Equity equity, int gross) {
 		// TODO Auto-generated method stub
-
+		int xi=0;
 		try {
 
 			System.out.println("Inserting records into table:");
@@ -202,7 +205,7 @@ public class AdminDAOImpl implements AdminDAO {
 			ps.setInt(1, gross);
 			ps.setString(2, trader.getTraderId());
 			System.out.println(sql);
-			int xi = ps.executeUpdate();
+			xi = ps.executeUpdate();
 			ps.clearBatch();
 			ps.close();
 			System.out.println(xi);
@@ -213,7 +216,10 @@ public class AdminDAOImpl implements AdminDAO {
 			return false;
 //		return false;
 		}
-        return true;
+		if(xi>0)
+			return true;
+		else
+			return false;
 		// add exception
 
 	}
@@ -251,6 +257,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public boolean modifyTrade(Trade trade, int quantity) {
 
+		int row=0;
 		try{
 			System.out.println("Inserting records into table:");
 			//String sql = "UPDATE TRADELIST SET QUANTITY = " + quantity + " WHERE TRADEID = " + trade.getTradeId();
@@ -264,7 +271,7 @@ public class AdminDAOImpl implements AdminDAO {
 			
 			System.out.println(sql);
 			
-			ps.executeUpdate(sql);
+			row=ps.executeUpdate();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -274,7 +281,10 @@ public class AdminDAOImpl implements AdminDAO {
 
 		// add exception
 
-		return true;
+		if(row>0)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
@@ -309,7 +319,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public boolean setNumOfEquityByName(Trader trader, String tickerSymbol, int quantity) {
 		// TODO Auto-generated method stub
-
+		int row=0;
 		try {
 			System.out.println("Inserting records into table:");
 			String sql = "UPDATE TRADEREQUITYDETAILS SET QUANTITY = ? WHERE TRADERID = ? AND TICKERSYMBOL= ?";
@@ -319,7 +329,7 @@ public class AdminDAOImpl implements AdminDAO {
 			ps.setInt(1, quantity);
 			ps.setString(2, trader.getTraderId());
 			ps.setString(3, tickerSymbol);
-			ps.executeUpdate(sql);
+			row=ps.executeUpdate();
 			// }
 			// once got sudent add to list
 			// fetching is column wise
@@ -331,8 +341,10 @@ public class AdminDAOImpl implements AdminDAO {
 //		return false;
 		}
 
-		// add exception
-       return true;
+		if(row>0)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
@@ -344,6 +356,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public boolean setTraderEquity(Trader trader, Equity equity) {
 		// TODO Auto-generated method stub
+		int row=0;
 		try {
 
 			connection.setAutoCommit(false);
@@ -354,7 +367,7 @@ public class AdminDAOImpl implements AdminDAO {
 			ps.setInt(1, equity.getQuantity());
 			ps.setString(2, trader.getTraderId());
 			ps.setString(3, equity.getTickerSymbol());
-			int row = ps.executeUpdate();
+			row = ps.executeUpdate();
 			ps.execute();
 			connection.commit();
 		} catch (SQLException e) {
@@ -362,12 +375,16 @@ public class AdminDAOImpl implements AdminDAO {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
+		if(row>0)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
 	public boolean setTraderFund(Trader trader) {
 		// TODO Auto-generated method stub
+		int row=0;
 		try {
 
 			connection.setAutoCommit(false);
@@ -377,7 +394,7 @@ public class AdminDAOImpl implements AdminDAO {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setFloat(1, trader.getTraderFundBal());
 			ps.setString(2, trader.getTraderId());
-			int row = ps.executeUpdate();
+			row = ps.executeUpdate();
 			ps.execute();
 			connection.commit();
 		} catch (SQLException e) {
@@ -385,7 +402,10 @@ public class AdminDAOImpl implements AdminDAO {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
+		if(row>0)
+			return true;
+		else
+			return false;
 	}
 	
 	
