@@ -18,42 +18,42 @@ public class DoCorporateAction {
 	AdminDAOImpl adminDAOImpl = new AdminDAOImpl();
 	
 	public void runme() {
-//		List<Dividend> corporateactions = (new CorporateActionDAOImpl()).getDividendCorporateActions();
-//		System.out.println(corporateactions.size());
-//		corporateactions.forEach((cpa)->{
-//			System.out.println(cpa.toString());
-//			List<Trader> securityHolders = ObjectsCreation.findTradersBySecurity(cpa.getTickerSymbol());
-//			System.out.println(securityHolders.size());
-//			securityHolders.forEach((securityHolder)->{
-//				
-//				//stem.out.println(securityHolder.toString());
-//				double dividend = cpa.calculateReward((double)ObjectsCreation.getNumberOfEquityByName(cpa.getTickerSymbol(), securityHolder));
-//				securityHolder.setTraderFundBal((float)securityHolder.getTraderFundBal()+(float)dividend);
-//				securityHolder.toString();
-//				adminDAOImpl.setTraderFund(securityHolder);
-//			});
-//		});
+		List<Dividend> corporateactions = (new CorporateActionDAOImpl()).getDividendCorporateActions();
+		System.out.println(corporateactions.size());
+		corporateactions.forEach((cpa)->{
+			System.out.println(cpa.toString());
+			List<Trader> securityHolders = ObjectsCreation.findTradersBySecurity(cpa.getTickerSymbol());
+			System.out.println(securityHolders.size());
+			securityHolders.forEach((securityHolder)->{
+				
+				//stem.out.println(securityHolder.toString());
+				double dividend = cpa.calculateReward((double)ObjectsCreation.getNumberOfEquityByName(cpa.getTickerSymbol(), securityHolder));
+				securityHolder.setTraderFundBal((float)securityHolder.getTraderFundBal()+(float)dividend);
+				securityHolder.toString();
+				adminDAOImpl.setTraderFund(securityHolder);
+			});
+		});
 		
 		
-//		List<Split> corporateactions1 = (new CorporateActionDAOImpl()).getSplitCorporateActions();
-//		corporateactions1.forEach((cpa)->{
-//			List<Trader> securityHolders = ObjectsCreation.findTradersBySecurity(cpa.getTickerSymbol());
-//			System.out.println(cpa.toString());
-//			securityHolders.forEach((securityHolder)->{
-//				double initialShares = (double)ObjectsCreation.getNumberOfEquityByName(cpa.getTickerSymbol(), securityHolder);
-//				double shares = cpa.calculateReward(initialShares);
-//				Equity equity = new Equity();
-//				equity.setFaceValue(cpa.getFaceValue());
-//				equity.setTickerSymbol(cpa.getTickerSymbol());
-//				equity.setQuantity((int)(initialShares+shares));
-//				adminDAOImpl.setTraderEquity(securityHolder, equity);
-//				System.out.println(securityHolder.toString());
-//				System.out.println(cpa.toString());
-//				//updateTraderSecurityBal();
-//				double faceValue = (cpa.getFaceValue()*cpa.getRatioB())/(cpa.getRatioA()+cpa.getRatioB());
-//				ObjectsCreation.updateFaceValue(cpa,faceValue);
-//			});
-//		});
+		List<Split> corporateactions1 = (new CorporateActionDAOImpl()).getSplitCorporateActions();
+		corporateactions1.forEach((cpa)->{
+			List<Trader> securityHolders = ObjectsCreation.findTradersBySecurity(cpa.getTickerSymbol());
+			System.out.println(cpa.toString());
+			securityHolders.forEach((securityHolder)->{
+				double initialShares = (double)ObjectsCreation.getNumberOfEquityByName(cpa.getTickerSymbol(), securityHolder);
+				double shares = cpa.calculateReward(initialShares);
+				Equity equity = new Equity();
+				equity.setFaceValue(cpa.getFaceValue());
+				equity.setTickerSymbol(cpa.getTickerSymbol());
+				equity.setQuantity((int)(initialShares+shares));
+				adminDAOImpl.setTraderEquity(securityHolder, equity);
+				System.out.println(securityHolder.toString());
+				System.out.println(cpa.toString());
+				//updateTraderSecurityBal();
+				double faceValue = (cpa.getFaceValue()*cpa.getRatioB())/(cpa.getRatioA()+cpa.getRatioB());
+				ObjectsCreation.updateFaceValue(cpa,faceValue);
+			});
+		});
 //		
 		List<Bonus> corporateactions11 = (new CorporateActionDAOImpl()).getBonusCorporateActions();
 		corporateactions11.forEach((cpa)->{
