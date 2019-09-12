@@ -109,6 +109,7 @@ public class CorporateActionDAOImpl implements CorporateActionDAO {
 					
 					while (set1.next()) {// till data end
 						faceValue = set1.getFloat("facevalue");
+						System.out.println(set1.getString("tickersymbol")+" " + set1.getFloat("facevalue"));
 					}
 					ps.close();
 				} 
@@ -118,7 +119,7 @@ public class CorporateActionDAOImpl implements CorporateActionDAO {
 				}
 				
 				Split split = new Split(tickerSymbol,faceValue,ratioNumerator,ratioDenominator);
-				//System.out.println(tickerSymbol+" "+faceValue+" "+dividendPercentage);
+				System.out.println(tickerSymbol+" "+faceValue+" "+dividendPercentage);
 				cpas.add(split);
 
 			}
