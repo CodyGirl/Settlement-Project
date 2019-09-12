@@ -11,5 +11,11 @@ public interface CorporateActionDAO {
 	public List<Dividend> getDividendCorporateActions();
 	public List<Split> getSplitCorporateActions();
 	public List<Bonus> getBonusCorporateActions();
+	public boolean addDividendCorporateAction(String tickerSymbol, float percentageDividend);
+	public boolean addSplitCorporateAction(String tickerSymbol, int ratioA, int ratioB);
+	public boolean addBonusCorporateAction(String tickerSymbol, int ratioA, int ratioB);
+	public boolean deleteDividendCorporateActions();
+	public boolean deleteSplitCorporateActions();
+	public boolean deleteBonusCorporateActionss();
 
 }

@@ -204,4 +204,122 @@ public class CorporateActionDAOImpl implements CorporateActionDAO {
 	
 	}
 
+	@Override
+	public boolean addDividendCorporateAction(String tickerSymbol, float percentageDividend) {
+		// TODO Auto-generated method stub
+		String query = "insert into corporateactiondividend values(?,?)";
+		Connection connection = ConnectionClass.openConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			ps.setString(1, tickerSymbol);
+			ps.setFloat(2, percentageDividend);
+			int rows = ps.executeUpdate();
+			if(rows>0)
+				return true;
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean addSplitCorporateAction(String tickerSymbol, int ratioA, int ratioB) {
+		// TODO Auto-generated method stub
+		String query = "insert into corporateactionsplit values(?,?,?)";
+		Connection connection = ConnectionClass.openConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			ps.setString(1, tickerSymbol);
+			ps.setInt(2, ratioA);
+			ps.setInt(3, ratioB);
+			int rows = ps.executeUpdate();
+			if(rows>0)
+				return true;
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean addBonusCorporateAction(String tickerSymbol, int ratioA, int ratioB) {
+		// TODO Auto-generated method stub
+		String query = "insert into corporateactionbonus values(?,?,?)";
+		Connection connection = ConnectionClass.openConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			ps.setString(1, tickerSymbol);
+			ps.setInt(2, ratioA);
+			ps.setInt(3, ratioB);
+			int rows = ps.executeUpdate();
+			if(rows>0)
+				return true;
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteDividendCorporateActions() {
+		// TODO Auto-generated method stub
+		String query = "delete from corporateactiondividend";
+		Connection connection = ConnectionClass.openConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			int rows = ps.executeUpdate();
+			if(rows>0)
+				return true;
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteSplitCorporateActions() {
+		// TODO Auto-generated method stub
+		String query = "delete from corporateactionsplit";
+		Connection connection = ConnectionClass.openConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			int rows = ps.executeUpdate();
+			if(rows>0)
+				return true;
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;	}
+
+	@Override
+	public boolean deleteBonusCorporateActionss() {
+		// TODO Auto-generated method stub
+		String query = "delete from corporateactionbonus";
+		Connection connection = ConnectionClass.openConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			int rows = ps.executeUpdate();
+			if(rows>0)
+				return true;
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;	}
+
+
+
 }
