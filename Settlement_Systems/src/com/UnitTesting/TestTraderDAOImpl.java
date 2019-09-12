@@ -31,7 +31,6 @@ public class TestTraderDAOImpl {
 
 	@Test
 	public void testGetNumOfEquity() {
-		
 		TraderDAO ob=new TraderDAOImpl();
 		String tickerSymbol="FB";
 		String TraderId="BCS";
