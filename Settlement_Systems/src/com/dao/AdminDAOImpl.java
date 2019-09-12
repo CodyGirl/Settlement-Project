@@ -627,7 +627,7 @@ public class AdminDAOImpl implements AdminDAO {
 		Trade[] tradelist = new Trade[50];
 		Random rand = new Random();
 
-		for (int i = 1; i < 21; i++) {
+		for (int i = 1; i < 51; i++) {
 			// System.out.println(""+i);
 
 			Trade t1 = new Trade();
