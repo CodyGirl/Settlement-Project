@@ -50,9 +50,14 @@ public class DoCorporateAction {
 				System.out.println(securityHolder.toString());
 				System.out.println(cpa.toString());
 				//updateTraderSecurityBal();
-				double faceValue = (cpa.getFaceValue()*cpa.getRatioB())/(cpa.getRatioA()+cpa.getRatioB());
-				ObjectsCreation.updateFaceValue(cpa,faceValue);
+				//System.out.println("Face value initial");
+				
 			});
+			
+			double faceValue = (cpa.getFaceValue()*cpa.getRatioB())/(cpa.getRatioA()+cpa.getRatioB());
+			System.out.println("face value initial "+ cpa.getFaceValue());
+			System.out.println("face value final " + faceValue);
+			ObjectsCreation.updateFaceValue(cpa,faceValue);
 		});
 //		
 		List<Bonus> corporateactions11 = (new CorporateActionDAOImpl()).getBonusCorporateActions();
@@ -80,7 +85,15 @@ public class DoCorporateAction {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		DoCorporateAction action = new DoCorporateAction();
-		action.runme();
+		CorporateActionDAOImpl cpadaoimpl = new CorporateActionDAOImpl();
+//		cpadaoimpl.addDividendCorporateAction("AAPL", 15);
+//		cpadaoimpl.addBonusCorporateAction("FB", 2, 3);
+//		cpadaoimpl.addSplitCorporateAction("MSFT", 4, 2);
+//		action.runme();
+		cpadaoimpl.deleteBonusCorporateActionss();
+		cpadaoimpl.deleteDividendCorporateActions();
+		cpadaoimpl.deleteSplitCorporateActions();
+		
 	}
 
 	private static List<CorporateAction> getBonusCorporateActions() {
