@@ -521,7 +521,7 @@ public class AdminDAOImpl implements AdminDAO {
 			ps.setString(3, tickerSymbol);
 			System.out.println(sql);
 
-			ps.executeUpdate();
+			rows_updated=ps.executeUpdate();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
