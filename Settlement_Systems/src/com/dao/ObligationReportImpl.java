@@ -20,12 +20,14 @@ public class ObligationReportImpl {
 		for (Equity equity : equities) {
 			for (Trader trader : traders) {
 
-				int gross = 0;
+				int grossShare = 0;
+				int grossAmount=0;
 				List<Trade> trade = new ArrayList<Trade>();
 				trade = Dao.findCorrespTrade(equity, trader);
 				if (trade.isEmpty()) {
 					System.out.println("FFFFFUUCKKK");
-					Dao.setDataInReportTable(trader, equity, gross);
+					Dao.setDataInReportTable(trader, equity, grossShare);
+					Dao.setDataInFundReportTable(trader,equity,grossAmount);
 					continue;
 				} else {
 					System.out.println("FFFFFUUCKKK share");
@@ -43,18 +45,22 @@ public class ObligationReportImpl {
 							System.out.println("details of that matched trader" + tradeIt.getBuyer().getTraderName()
 									+ trader.getTraderName());
 
-							gross += tradeIt.getEquityQty();
+							grossShare += tradeIt.getEquityQty();
+							grossAmount -= (tradeIt.getEquityQty()* tradeIt.getEquityPrice());
+							
 						}  if (tradeIt.getSeller().getTraderName().equals(trader.getTraderName())) {
 							System.out.println("My trade quantity in else if case is " + tradeIt.getEquityQty());
 
 							System.out.println("details of that matched trader" + tradeIt.getSeller().getTraderName()
 									+ trader.getTraderName());
 
-							gross -= tradeIt.getEquityQty();
+							grossShare -= tradeIt.getEquityQty();
+							grossAmount += (tradeIt.getEquityQty()*tradeIt.getEquityPrice());
 						}
 					}
-					System.out.println("share : " + gross);
-					Dao.setDataInReportTable(trader, equity, gross);
+					System.out.println("share : amount  " + grossShare+ grossAmount);
+					Dao.setDataInReportTable(trader, equity, grossShare);
+					Dao.setDataInFundReportTable(trader,equity,grossAmount);
 					System.out.println("back to obligation");
 					// SettlementReport.generateSettlement(trader,equity,gross);
 				}

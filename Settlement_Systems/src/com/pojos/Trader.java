@@ -6,7 +6,7 @@ public class Trader {
 
 	private String traderId;
 	private String traderName;
-	private String traderPassword;
+	//private String traderPassword;
 	private float traderFundBal;
 	private List<Equity> equityBal;
 	
@@ -15,16 +15,16 @@ public class Trader {
 	public Trader() {
 		traderId="invalid";
 		traderName="invalid";
-		traderPassword="inavlid";
+		//traderPassword="inavlid";
 		traderFundBal=(float) 0.00;
 		
 	}
 	
-	public Trader(String traderId, String traderName, String traderPassword, float traderFundBal,
+	public Trader(String traderId, String traderName, float traderFundBal,
 			List<Equity> equityBal) {
 		this.traderId = traderId;
 		this.traderName = traderName;
-		this.traderPassword = traderPassword;
+		//this.traderPassword = traderPassword;
 		this.traderFundBal = traderFundBal;
 		this.equityBal = equityBal;
 	}
@@ -43,12 +43,7 @@ public class Trader {
 	public void setTraderId(String traderId) {
 		this.traderId = traderId;
 	}
-	public String getTraderPassword() {
-		return traderPassword;
-	}
-	public void setTraderPassword(String traderPassword) {
-		this.traderPassword = traderPassword;
-	}
+	
 	public float getTraderFundBal() {
 		return traderFundBal;
 	}
@@ -72,9 +67,10 @@ public class Trader {
 
 	@Override
 	public String toString() {
-		return "Trader [traderId=" + traderId + ", traderName=" + traderName + ", traderPassword=" + traderPassword
-				+ ", traderFundBal=" + traderFundBal + ", equityBal=" + equityBal + "]";
+		return "Trader [traderId=" + traderId + ", traderName=" + traderName + ", traderFundBal=" + traderFundBal
+				+ ", equityBal=" + equityBal + "]";
 	}
+
 	
 	
 	

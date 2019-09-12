@@ -13,22 +13,16 @@ public interface AdminDAO {
 
 	
 	boolean inputTrade(List<Trade> trades) ;
-	
-	boolean settleTrade() ;
-	
+
 	List<Trade> findAllTrades();
 	
 	List<Trade> findCorrespTrade(Equity equityName,Trader trader);
 	
-	boolean setDataInReportTable(Trader trader,Equity equity,int gross);
+	boolean setDataInReportTable(Trader trader,Equity equity,int grossShare);
 	
 	int getNumOfEquity(String tickerSymbol,Trader trader);
 	
 	boolean setNumOfEquityByName(Trader trader,String tickerSymbol,int quantity);
-	
-	boolean declareAction() ;
-
-	//int getNumOfEquity(String tickerSymbol);
 	
 	boolean modifyTrade(Trade trade,int quantity);
 
@@ -44,6 +38,22 @@ public interface AdminDAO {
 
 	int getDataFromReportTable(Trader trader, Equity equity);
 
-	boolean generateRandomTrades();
+	void generateRandomTrades();
+
+	boolean setDataInFundReportTable(Trader trader, Equity equity, int grossAmount);
+
+	float getDataFromFundReportTable(Trader trader, Equity equity);
+
+	float getBorrowEquityPrice(Equity equity);
+
+	boolean setDataInFundInterestTable(Trader trader, double fundCost);
+
+	boolean setDataInEquityInterestTable(Trader trader, Equity equity, double fundCost);
+
+	boolean setDataInEquityShortageTable(Trader trader, Equity equity, int shareShortage);
+
+
+
+	void generateCorpAction();
 	
 }

@@ -10,7 +10,7 @@ public abstract class CorporateAction {
 	//private Object action;
 	//private Date actionDate;
 	
-	private int numOfEquity;
+	//private int numOfEquity;
 	//private float fund;
 //	private float initialFund;
 //	private int initialSecurity;
@@ -31,12 +31,12 @@ public abstract class CorporateAction {
 	}
 
 
-	public CorporateAction(String tickerSymbol, float faceValue, int numOfEquity, double percentageDividend, int ratioA,
+	public CorporateAction(String tickerSymbol, float faceValue, double percentageDividend, int ratioA,
 			int ratioB) {
 		super();
 		this.tickerSymbol = tickerSymbol;
 		this.faceValue = faceValue;
-		this.numOfEquity = numOfEquity;
+		//this.numOfEquity = numOfEquity;
 		this.percentageDividend = percentageDividend;
 		this.ratioA = ratioA;
 		this.ratioB = ratioB;
@@ -66,12 +66,12 @@ public abstract class CorporateAction {
 	abstract public double calculateReward(double something);
 	
 	
-	public int getNumOfEquity() {
-		return numOfEquity;
-	}
-	public void setNumOfEquity(int numOfEquity) {
-		this.numOfEquity = numOfEquity;
-	}
+//	public int getNumOfEquity() {
+//		return numOfEquity;
+//	}
+//	public void setNumOfEquity(int numOfEquity) {
+//		this.numOfEquity = numOfEquity;
+//	}
 
 	public String getTickerSymbol() {
 		return tickerSymbol;
@@ -87,4 +87,3 @@ public abstract class CorporateAction {
 	}
 
 }
-

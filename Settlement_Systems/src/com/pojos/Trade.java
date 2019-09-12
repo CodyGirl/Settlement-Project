@@ -11,8 +11,8 @@ public class Trade {
 	private String tickerSymbol;
 	private int equityQty;
 	private float equityPrice;
-	private Date settlementDate;
-	private boolean isSettled;
+	//private Date settlementDate;
+	private int isSettled;
 	
 	
 	
@@ -40,9 +40,7 @@ public class Trade {
 		this.seller = seller;
 	}
 
-	public Trade() {
-		super();
-	}
+	
 	
 	public String getTickerSymbol() {
 		return tickerSymbol;
@@ -62,20 +60,15 @@ public class Trade {
 	public void setEquityPrice(float equityPrice) {
 		this.equityPrice = equityPrice;
 	}
-	public Date getSettlementDate() {
-		return settlementDate;
-	}
-	public void setSettlementDate(Date settlementDate) {
-		this.settlementDate = settlementDate;
-	}
-	public boolean isSettled() {
+	
+	public int getIsSettled() {
 		return isSettled;
 	}
-	public void setSettled(boolean isSettled) {
+	public void setSettled(int isSettled) {
 		this.isSettled = isSettled;
 	}
-	public Trade(Trader buyer, Trader seller, String sellerId, String tickerSymbol, int equityQty, float equityPrice,
-			Date settlementDate, boolean isSettled) {
+	public Trade(String tradeId,Trader buyer, Trader seller, String tickerSymbol, int equityQty, float equityPrice,
+			int isSettled) {
 		super();
 		this.tradeId = tradeId;
 		this.buyer = buyer;
@@ -83,9 +76,26 @@ public class Trade {
 		this.tickerSymbol = tickerSymbol;
 		this.equityQty = equityQty;
 		this.equityPrice = equityPrice;
-		this.settlementDate = settlementDate;
+		//this.settlementDate = settlementDate;
 		this.isSettled = isSettled;
 	}
+	public Trade() {
+		tradeId= "inavlid";
+		buyer =null;
+		seller= null;
+		tickerSymbol="inavlid";
+		equityQty= 0;
+		equityPrice=0;
+		isSettled= 0;
+	}
+
+	@Override
+	public String toString() {
+		return "Trade [tradeId=" + tradeId + ", buyer=" + buyer + ", seller=" + seller + ", tickerSymbol="
+				+ tickerSymbol + ", equityQty=" + equityQty + ", equityPrice=" + equityPrice + ", isSettled="
+				+ isSettled + "]";
+	}
+	
 	
 	
 	

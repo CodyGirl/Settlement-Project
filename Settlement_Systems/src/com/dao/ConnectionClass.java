@@ -7,18 +7,18 @@ import java.sql.SQLException;
 public class ConnectionClass {
 
 	
-	public static Connection openConnection(){
-		Connection connection=null;
+	
+	public  static Connection openConnection(){
+		Connection connection= null;
 		try {
 			
-			//open conn
+			//open connection
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			System.out.println("driver loaded successfully");
 			
 			//jdbc:data_base:install_server:post/databse
 			//2.connection
-			 connection=
-			DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","hr","hr");
+			 connection= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","hr","hr");
 			//hr is username
 			//hr is portname
 			System.out.println("Connection obtained");
