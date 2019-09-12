@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import com.dao.AdminDAO;
 import com.dao.AdminDAOImpl;
-import com.dao.AdminLoginDAO;
 import com.pojos.Equity;
 import com.pojos.Trade;
 import com.pojos.Trader;
@@ -38,7 +37,8 @@ public class TestAdminDAOImpl {
 
 //	@Test
 //	public void testInputTrade() {
-//		List<Trade> trades=new ArrayList<>();
+//		
+//List<Trade> trades=new ArrayList<>();
 //		
 //		Trader buyer=new Trader();
 //		buyer.setTraderId("CITI");
@@ -47,36 +47,30 @@ public class TestAdminDAOImpl {
 //		seller.setTraderId("CITI");
 //		
 //		Trade trade=new Trade();
-//		trade.setTradeId("52");
+//		
+//		trade.setTradeId("51");
 //		trade.setTickerSymbol("MSFT");
 //		trade.setBuyer(buyer);
 //		trade.setSeller(seller);
 //		trade.setEquityQty(3000);
 //		trade.setEquityPrice(123.5f);
+//		trade.setSettled(0);
 //		
 //		trades.add(trade);
 //		
 //		AdminDAO ob=new AdminDAOImpl();		
 //		assertEquals(true, ob.inputTrade(trades));
 //		
-//		
 //	}
-
-	@Test
-	public void testSettleTrade() {
-		fail("Not yet implemented");
-	}
 
 //	@Test
 //	public void testFindAllTrades() {
-//		
 //		AdminDAO ob=new AdminDAOImpl();
 //		List<Trade> list=ob.findAllTrades();
 //		
 //		Trade trade=list.get(1);
-//		assertEquals(52, list.size());
+//		assertEquals(51, list.size());
 //		assertEquals("4", trade.getTradeId());
-		
 //	}
 
 //	@Test
@@ -89,10 +83,10 @@ public class TestAdminDAOImpl {
 //		AdminDAO ob=new AdminDAOImpl();
 //		
 //		List<Trade> list=ob.findCorrespTrade(equity, trader);
-//		Trade trade = list.get(0);
+//		Trade trade = list.get(1);
 //		
-//		assertEquals("29", trade.getTradeId());
-//		assertEquals(4,list.size() );
+//		assertEquals("25", trade.getTradeId());
+//		assertEquals(5,list.size() );
 //	}
 
 //	@Test
@@ -105,10 +99,9 @@ public class TestAdminDAOImpl {
 //		Equity equity=new Equity();
 //		equity.setTickerSymbol("AAPL");
 //		
-//		int gross=100;
+//		int gross=200;
 //		
 //		assertEquals(true, ob.setDataInReportTable(trader, equity, gross));
-//		
 //	}
 
 //	@Test
@@ -121,7 +114,73 @@ public class TestAdminDAOImpl {
 //		
 //		AdminDAO ob=new AdminDAOImpl();
 //		
-//		assertEquals(100, ob.getDataFromReportTable(trader, equity));
+//		assertEquals(200, ob.getDataFromReportTable(trader, equity));
+//	}
+
+//	@Test
+//	public void testSetDataInFundReportTable() {
+//		AdminDAO ob=new AdminDAOImpl();
+//		
+//		Trader trader =new Trader();
+//		Equity equity =new Equity();
+//		
+//		equity.setTickerSymbol("AAPL");
+//		trader.setTraderId("JPM");
+//		
+//		int gross=100;
+//		
+//		assertEquals(true, ob.setDataInFundReportTable(trader, equity, gross));
+//	}
+
+//	@Test
+//	public void testGetDataFromFundReportTable() {
+//		Trader trader =new Trader();
+//		Equity equity =new Equity();
+//		AdminDAO ob=new AdminDAOImpl();
+//		equity.setTickerSymbol("AAPL");
+//		trader.setTraderId("JPM");
+//		
+//		float value=ob.getDataFromReportTable(trader, equity);
+//		assertEquals(100.0f, ob.getDataFromFundReportTable(trader, equity),0.000f);
+//		
+//	}
+
+//	@Test
+//	public void testSetDataInFundInterestTable() {
+//		Trader trader =new Trader();
+//		trader.setTraderId("JPM");
+//		
+//		double fundCost=5.3d;
+//		AdminDAO ob=new AdminDAOImpl();
+//		
+//		assertEquals(true, ob.setDataInFundInterestTable(trader, fundCost));
+//	}
+
+//	@Test
+//	public void testSetDataInEquityInterestTable() {
+//		Trader trader=new Trader();
+//		Equity equity=new Equity();
+//		double fundCost=5.4D;
+//		
+//		trader.setTraderId("GS");
+//		equity.setTickerSymbol("AAPL");
+//		AdminDAO ob=new AdminDAOImpl();
+//		assertEquals(true, ob.setDataInEquityInterestTable(trader, equity, fundCost));
+//	}
+
+//	@Test
+//	public void testSetDataInEquityShortageTable() {
+//		Trader trader=new Trader();
+//		Equity equity=new Equity();
+//		
+//		trader.setTraderId("GS");
+//		equity.setTickerSymbol("AAPL");
+//		
+//		int shareShortage=20;
+//		AdminDAO ob=new AdminDAOImpl();
+//		assertEquals(true, ob.setDataInEquityShortageTable(trader, equity, shareShortage));
+//		
+//
 //	}
 
 //	@Test
@@ -138,7 +197,6 @@ public class TestAdminDAOImpl {
 //	@Test
 //	public void testGetNumOfEquity() {
 //		AdminDAO ob=new AdminDAOImpl();
-//		
 //		Trader trader=new Trader();
 //		trader.setTraderId("CITI");
 //		String tickerSymbol="AAPL";
@@ -148,27 +206,21 @@ public class TestAdminDAOImpl {
 //	@Test
 //	public void testSetNumOfEquityByName() {
 //		AdminDAO ob=new AdminDAOImpl();
-//		
 //		Trader trader = new Trader();
 //		trader.setTraderId("GS");
 //		String tickerSymbol="FB";
-//		int quantity=2500;
+//		int quantity=2600;
 //		assertEquals(true, ob.setNumOfEquityByName(trader, tickerSymbol, quantity));
 //	}
-
-	@Test
-	public void testDeclareAction() {
-		fail("Not yet implemented");
-	}
 
 //	@Test
 //	public void testSetTraderEquity() {
 //		Trader trader=new Trader();
-//		trader.setTraderId("1");
+//		trader.setTraderId("CITI");
 //		
 //		Equity equity=new Equity();
-//		equity.setQuantity(3333);
-//		equity.setTickerSymbol("FB");
+//		equity.setQuantity(45000);
+//		equity.setTickerSymbol("AMZN");
 //		
 //		AdminDAO ob=new AdminDAOImpl();
 //		
@@ -180,22 +232,22 @@ public class TestAdminDAOImpl {
 //		AdminDAO ob=new AdminDAOImpl();
 //		
 //		Trader trader = new Trader();
-//		trader.setTraderId("1");
+//		trader.setTraderId("GS");
 //		trader.setTraderFundBal(250000);
 //		
 //		assertEquals(true, ob.setTraderFund(trader));
 //	}
 
-	@Test
-	public void testGenerateRandomTrades() {
-		AdminDAO ob=new AdminDAOImpl();
-		assertEquals(true, ob.generateRandomTrades());
-	}
+//	@Test
+//	public void testGenerateRandomTrades() {
+//		AdminDAO ob=new AdminDAOImpl();
+//		assertEquals(true, ob.generateRandomTrades());
+//	}
 
 //	@Test
 //	public void testDeleteTrade() {
 //		Trade t=new Trade();
-//		t.setTradeId("15");
+//		t.setTradeId("1");
 //		
 //		AdminDAO ob=new AdminDAOImpl();
 //		
@@ -214,6 +266,17 @@ public class TestAdminDAOImpl {
 //		e.setTickerSymbol("MSFT");
 //		
 //		assertEquals(7.0f, ob.getBorrowEquityRate(e),0.001);
+		
+//	}
+
+//	@Test
+//	public void testGetBorrowEquityPrice() {
+//		AdminDAO ob=new AdminDAOImpl();
+//		
+//		Equity equity=new Equity();
+//		equity.setTickerSymbol("FB");
+//		
+//		assertEquals(78.0, ob.getBorrowEquityPrice(equity),0.001f);
 //	}
 
 //	@Test
@@ -223,6 +286,11 @@ public class TestAdminDAOImpl {
 //		assertEquals(1.25f, ob.getBorrowFundRate("usd"), 0.001);
 //		assertEquals(1.1f, ob.getBorrowFundRate("inr"), 0.001);
 //		assertEquals(1.15f, ob.getBorrowFundRate("jpy"), 0.001);
+//	}
+
+//	@Test
+//	public void testGenerateCorpAction() {
+//		fail("Not yet implemented");
 //	}
 
 }
