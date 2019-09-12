@@ -252,7 +252,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public boolean setDataInFundReportTable(Trader trader, Equity equity, int gross) {
 		// TODO Auto-generated method stub
-
+		int xi=0;
 		try {
 
 			System.out.println("Inserting records into fundreport table:");
@@ -262,7 +262,7 @@ public class AdminDAOImpl implements AdminDAO {
 			ps.setInt(1, gross);
 			ps.setString(2, trader.getTraderId());
 			System.out.println(sql);
-			int xi = ps.executeUpdate();
+			 xi = ps.executeUpdate();
 			ps.clearBatch();
 			ps.close();
 			System.out.println(xi);
@@ -273,7 +273,10 @@ public class AdminDAOImpl implements AdminDAO {
 			return false;
 //		return false;
 		}
-        return true;
+		if(xi >0 )
+            return true;
+		else
+			return false;
 		// add exception
 
 	}
@@ -310,6 +313,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public boolean setDataInFundInterestTable(Trader trader, double fundCost) {
 		// TODO Auto-generated method stub
+		int xi=0;
 		try {
 
 			System.out.println("Inserting records into fundreport table:");
@@ -319,7 +323,7 @@ public class AdminDAOImpl implements AdminDAO {
 			ps.setDouble(1, fundCost);;
 			ps.setString(2, trader.getTraderId());
 			System.out.println(sql);
-			int xi = ps.executeUpdate();
+			 xi = ps.executeUpdate();
 			ps.clearBatch();
 			ps.close();
 			System.out.println(xi);
@@ -330,7 +334,10 @@ public class AdminDAOImpl implements AdminDAO {
 			return false;
 //		return false;
 		}
-        return true;
+		if(xi >0 )
+            return true;
+		else
+			return false;
 		// add exception
 
 	}
@@ -339,6 +346,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public boolean setDataInEquityInterestTable(Trader trader,Equity equity, double fundCost) {
 		// TODO Auto-generated method stub
+		int xi=0;
 		try {
 
 			System.out.println("Inserting records into fundreport table:");
@@ -348,7 +356,7 @@ public class AdminDAOImpl implements AdminDAO {
 			ps.setDouble(1, fundCost);;
 			ps.setString(2, trader.getTraderId());
 			System.out.println(sql);
-			int xi = ps.executeUpdate();
+			 xi = ps.executeUpdate();
 			ps.clearBatch();
 			ps.close();
 			System.out.println(xi);
@@ -359,7 +367,10 @@ public class AdminDAOImpl implements AdminDAO {
 			return false;
 //		return false;
 		}
-        return true;
+		if(xi >0 )
+            return true;
+		else
+			return false;
 		// add exception
 
 	}
@@ -368,6 +379,7 @@ public class AdminDAOImpl implements AdminDAO {
 	public boolean setDataInEquityShortageTable(Trader trader, Equity equity, int shareShortage) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
+		int xi=0;
 				try {
 
 					System.out.println("Inserting records into fundreport table:");
@@ -377,7 +389,7 @@ public class AdminDAOImpl implements AdminDAO {
 					ps.setDouble(1, shareShortage);;
 					ps.setString(2, trader.getTraderId());
 					System.out.println(sql);
-					int xi = ps.executeUpdate();
+					 xi = ps.executeUpdate();
 					ps.clearBatch();
 					ps.close();
 					System.out.println(xi);
@@ -388,7 +400,10 @@ public class AdminDAOImpl implements AdminDAO {
 					return false;
 //				return false;
 				}
-		        return true;
+				if(xi >0 )
+		            return true;
+				else
+					return false;
 				// add exception
 
 	}

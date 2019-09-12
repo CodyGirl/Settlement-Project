@@ -7,9 +7,10 @@ import com.pojos.Trader;
 
 public class SettlementReport {
 
-	public void generateSettlement(Trader trader) {
+	public void generateSettlement(String traderId) {
+		Trader trader = ObjectsCreation.findTraderById(traderId);
 		AdminDAOImpl Dao = new AdminDAOImpl();
-		String traderId = trader.getTraderId();
+		 traderId = trader.getTraderId();
 		List<Equity> equities = ObjectsCreation.findEquityDetailsOfTrader(traderId);
 		float grossFund = 0;
 		float fundBal = trader.getTraderFundBal();
